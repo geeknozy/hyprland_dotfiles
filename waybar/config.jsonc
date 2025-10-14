@@ -1,0 +1,123 @@
+{
+    "layer": "top", 
+    "position": "bottom",
+    "height": 30,
+    "min-height": 30,
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/separator",
+        "hyprland/window"
+    ],
+    
+    "hyprland/window": {
+        "format": "{title}",
+		"swap-icon-label": true
+	},
+    
+    "modules-center": [
+        
+    ],
+    
+    "modules-right": [
+        "network",
+        "custom/separator",
+        "cpu",
+        "custom/separator",
+        "memory",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "clock#time",
+        "custom/separator",
+        "clock#date",
+    ],
+    
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{}",
+        "active-only": false,
+        "sort-by": "id",
+        "all-outputs": false,
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "persistent-workspaces": {
+            "HDMI-A-2": [1, 2, 3, 4, 5, 6]
+        }
+    },
+    
+    "network": {
+        "format-wifi": "NET - {essid}",
+        "format-ethernet": "NET - {ifname}",
+        "format-disconnected": "NET - Disconnected"
+    },
+
+    
+    "cpu": {
+        "interval": 1,
+        "format": "CPU - {usage}%"
+    },
+    
+    "memory": {
+        "format": "MEM - {}%"
+    },
+
+    "pulseaudio": {
+        "format": "VOL - {volume}%",
+        "format-muted": "VOL - Muted",
+        "scroll-step": 5,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    },
+    
+    "clock#time": {
+        "format": "TIME - {:%H:%M}",
+        "tooltip": true,    
+        "tooltip-format": "<big>{:%H:%M:%S}</big>",
+        "interval": 1,
+    },
+
+    "clock#date": {
+        "format": "DATE - {:%d-%m-%Y}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+		"mode"          : "month",
+		"mode-mon-col"  : 3,
+		"weeks-pos"     : "right",
+		"on-scroll"     : 1,
+		"on-click-right": "year",
+		"on-click-left" : "mode",
+		"format": {
+			"months":     "<span color='#ffffff'>{}</span>",
+			"days":       "<span color='#ffffff'>{}</span>",
+			"weeks":      "<span color='#ffffff'>W{}</span>",
+			"weekdays":   "<span color='#ffffff'>{}</span>",
+			"today":      "<span color='#05eff7'><b><u>{}</u></b></span>"
+		}
+	},
+	"actions": {
+		"on-click-right": "mode",
+		"on-click-forward": "tz_up",
+		"on-click-backward": "tz_down",
+		"on-scroll-up": "shift_down",
+		"on-scroll-down": "shift_up"
+	}
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{capacity}%",
+        "format-charging": "Charge {capacity}%",
+        "format-full": "Full {capacity}%",
+        "format-alt": "{time} ({capacity}%)"
+    },
+}
